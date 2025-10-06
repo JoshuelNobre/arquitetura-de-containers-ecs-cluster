@@ -42,7 +42,7 @@ resource "aws_launch_template" "spots" {
     resource_type = "instance"
     tags = {
       Environment = var.environment,
-      Name = format("%s-on-demand", var.project_name) # NOTA: tag inconsistente, deveria ser "spots"
+      Name = format("%s-spots", var.project_name)
     }
   }
 
