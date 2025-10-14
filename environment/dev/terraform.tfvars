@@ -2,7 +2,7 @@ project_name = "linux-tips-ecs-cluster"
 
 region = "us-east-1"
 
-environment  = "dev"
+environment = "dev"
 
 #### SSM VPC Parameters ####
 
@@ -28,20 +28,20 @@ load_balancer_type = "application"
 
 nodes_ami = "ami-07ae7190a74b334a0"
 
-nodes_instace_type = "t3a.large"
+nodes_instance_type = "t3.micro"
 
 node_volume_size = "50"
 
 node_volume_type = "gp3"
 
-cluster_on_demand_min_size = 2
+cluster_on_demand_min_size = 1
 
-cluster_on_demand_max_size = 4
+cluster_on_demand_max_size = 3
 
-cluster_on_demand_desired_size = 3
+cluster_on_demand_desired_size = 1
 
-cluster_spot_min_size = 2
+cluster_spot_min_size = 1
 
-cluster_spot_max_size = 4
+cluster_spot_max_size = 3
 
-cluster_spot_desired_size = 3
+cluster_spot_desired_size = 1

@@ -43,8 +43,8 @@ resource "aws_security_group_rule" "ingress_443" {
 # Distribui o tráfego de entrada entre as instâncias do ECS nas múltiplas AZs
 resource "aws_lb" "main" {
   name               = format("%s-ingress", var.project_name)
-  internal           = var.load_balancer_internal    # Define se é interno (VPC) ou externo (internet-facing)
-  load_balancer_type = var.load_balancer_type        # Tipo do LB (application, network, etc.)
+  internal           = var.load_balancer_internal # Define se é interno (VPC) ou externo (internet-facing)
+  load_balancer_type = var.load_balancer_type     # Tipo do LB (application, network, etc.)
 
   # Subnets públicas onde o ALB será deployado (multi-AZ para alta disponibilidade)
   subnets = [
@@ -58,20 +58,20 @@ resource "aws_lb" "main" {
     aws_security_group.lb.id
   ]
 
-  enable_cross_zone_load_balancing = false  # Balanceamento entre zonas (false = mais eficiente em custos)
-  enable_deletion_protection       = false  # Proteção contra exclusão acidental
+  enable_cross_zone_load_balancing = false # Balanceamento entre zonas (false = mais eficiente em custos)
+  enable_deletion_protection       = false # Proteção contra exclusão acidental
 }
 
 # Listener do Load Balancer para a porta 80
 # Define como o ALB deve processar as requisições HTTP recebidas
 resource "aws_lb_listener" "main" {
   load_balancer_arn = aws_lb.main.arn
-  port              = "80"      # Porta onde o ALB escuta as requisições
-  protocol          = "HTTP"    # Protocolo utilizado
-  
+  port              = "80"   # Porta onde o ALB escuta as requisições
+  protocol          = "HTTP" # Protocolo utilizado
+
   # Ação padrão quando nenhuma regra específica for atendida
   default_action {
-    type = "fixed-response"      # Retorna uma resposta fixa
+    type = "fixed-response" # Retorna uma resposta fixa
     fixed_response {
       content_type = "text/plain"
       message_body = "LinuxTips" # Mensagem padrão retornada

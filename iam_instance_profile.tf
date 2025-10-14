@@ -10,7 +10,7 @@ resource "aws_iam_role" "main" {
       Action = "sts:AssumeRole"
       Effect = "Allow"
       Principal = {
-        Service = "ec2.amazonaws.com"  # Permite que EC2 use esta role
+        Service = "ec2.amazonaws.com" # Permite que EC2 use esta role
       }
     }]
   })

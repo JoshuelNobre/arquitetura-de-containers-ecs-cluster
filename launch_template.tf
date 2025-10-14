@@ -2,9 +2,9 @@
 # Define a configuração base das instâncias EC2 que serão criadas pelo Auto Scaling Group
 resource "aws_launch_template" "on_demand" {
   name_prefix = format("%s-on-demand", var.project_name)
-  image_id    = var.nodes_ami          # AMI otimizada para ECS
+  image_id    = var.nodes_ami # AMI otimizada para ECS
 
-  instance_type = var.nodes_instace_type # Tipo da instância (ex: t3.micro)
+  instance_type = var.nodes_instance_type # Tipo da instância (ex: t3.micro)
 
   # Security Groups aplicados às instâncias
   vpc_security_group_ids = [
@@ -21,7 +21,7 @@ resource "aws_launch_template" "on_demand" {
 
   # Configuração do disco EBS
   block_device_mappings {
-    device_name = "/dev/xvda"  # Dispositivo raiz do sistema
+    device_name = "/dev/xvda" # Dispositivo raiz do sistema
 
     ebs {
       volume_size = var.node_volume_size # Tamanho em GB
@@ -34,7 +34,7 @@ resource "aws_launch_template" "on_demand" {
     resource_type = "instance"
     tags = {
       Environment = var.environment,
-      Name = format("%s-on-demand", var.project_name)
+      Name        = format("%s-on-demand", var.project_name)
     }
   }
 

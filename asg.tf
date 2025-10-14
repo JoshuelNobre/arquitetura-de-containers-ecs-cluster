@@ -22,7 +22,7 @@ resource "aws_autoscaling_group" "on-demand" {
   }
 
   # Tag propagada para todas as instâncias criadas
-  tag { 
+  tag {
     key                 = "Name"
     value               = format("%s-on-demand", var.project_name)
     propagate_at_launch = true
@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "on-demand" {
 
   # Tag necessária para integração com ECS
   # Permite que o ECS gerencie este Auto Scaling Group
-  tag { 
+  tag {
     key                 = "AmazonECSManaged"
     value               = true
     propagate_at_launch = true
@@ -41,17 +41,17 @@ resource "aws_autoscaling_group" "on-demand" {
 # Integra o Auto Scaling Group com o cluster ECS para escalonamento automático
 resource "aws_ecs_capacity_provider" "on_demand" {
   name = format("%s-on-demand", var.project_name)
-  
+
   # Configuração do Auto Scaling Group Provider
   auto_scaling_group_provider {
     auto_scaling_group_arn = aws_autoscaling_group.on-demand.arn
 
     # Configurações de escalonamento gerenciado pelo ECS
     managed_scaling {
-      maximum_scaling_step_size = 10       # Máximo de instâncias adicionadas por vez
-      minimum_scaling_step_size = 1        # Mínimo de instâncias adicionadas por vez
+      maximum_scaling_step_size = 10        # Máximo de instâncias adicionadas por vez
+      minimum_scaling_step_size = 1         # Mínimo de instâncias adicionadas por vez
       status                    = "ENABLED" # Escalonamento automático habilitado
-      target_capacity           = 90       # Percentual de utilização alvo (90%)
+      target_capacity           = 90        # Percentual de utilização alvo (90%)
     }
   }
 }

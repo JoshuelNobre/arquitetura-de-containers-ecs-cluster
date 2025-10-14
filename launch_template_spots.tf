@@ -2,9 +2,9 @@
 # Similar ao template On-Demand, mas configurado para usar instâncias Spot (mais baratas)
 resource "aws_launch_template" "spots" {
   name_prefix = format("%s-spots", var.project_name)
-  image_id    = var.nodes_ami          # AMI otimizada para ECS
+  image_id    = var.nodes_ami # AMI otimizada para ECS
 
-  instance_type = var.nodes_instace_type # Tipo da instância
+  instance_type = var.nodes_instance_type # Tipo da instância
 
   # Security Groups aplicados às instâncias
   vpc_security_group_ids = [
@@ -13,9 +13,9 @@ resource "aws_launch_template" "spots" {
 
   # Configuração específica para instâncias Spot
   instance_market_options {
-    market_type = "spot"         # Tipo de mercado: Spot Instances
+    market_type = "spot" # Tipo de mercado: Spot Instances
     spot_options {
-      max_price = "0.15"         # Preço máximo por hora (USD)
+      max_price = "0.15" # Preço máximo por hora (USD)
     }
   }
 
@@ -29,7 +29,7 @@ resource "aws_launch_template" "spots" {
 
   # Configuração do disco EBS
   block_device_mappings {
-    device_name = "/dev/xvda"  # Dispositivo raiz do sistema
+    device_name = "/dev/xvda" # Dispositivo raiz do sistema
 
     ebs {
       volume_size = var.node_volume_size # Tamanho em GB
@@ -42,7 +42,7 @@ resource "aws_launch_template" "spots" {
     resource_type = "instance"
     tags = {
       Environment = var.environment,
-      Name = format("%s-spots", var.project_name)
+      Name        = format("%s-spots", var.project_name)
     }
   }
 

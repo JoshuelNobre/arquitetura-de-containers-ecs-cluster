@@ -150,7 +150,7 @@ load_balancer_type     = "application"
 
 # Instâncias EC2
 nodes_ami           = "ami-0abcdef1234567890"  # AMI ECS-optimized
-nodes_instace_type  = "t3.micro"
+nodes_instance_type  = "t3.micro"
 node_volume_size    = 30
 node_volume_type    = "gp3"
 
@@ -207,7 +207,7 @@ aws elbv2 describe-load-balancers
 | `project_name` | string | Nome do projeto (prefixo recursos) | `"meu-ecs-cluster"` |
 | `region` | string | Região AWS | `"us-east-1"` |
 | `nodes_ami` | string | AMI otimizada para ECS | `"ami-0abcdef1234567890"` |
-| `nodes_instace_type` | string | Tipo da instância EC2 | `"t3.micro"` |
+| `nodes_instance_type` | string | Tipo da instância EC2 | `"t3.micro"` |
 
 ### Auto Scaling
 
